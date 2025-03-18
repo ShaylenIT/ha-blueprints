@@ -1,5 +1,6 @@
 # ha-blueprints
 Home Assistant Blueprints
- [<img src="https://github.com/user-attachments/assets/12e3bdd8-370a-4885-845f-58d940098d7d">](buymeacoffee.com/shaylen)
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://buymeacoffee.com/shaylen)
+
 
 
