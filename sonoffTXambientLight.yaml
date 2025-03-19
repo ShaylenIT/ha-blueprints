@@ -1,0 +1,119 @@
+blueprint:
+  name: Sonoff TX Ultimate Ambient Light
+  description: Turn ambient light on only if all channels are off
+  domain: automation
+  author: Shaylen-TRD
+  #source_url: "ttte"
+  #Define inputs
+  input:
+    trigger_start_time:
+      name: Start Time
+      description: Time ambient light will turn on from.
+      selector:
+        time:
+
+    trigger_end_time:
+      name: End Time
+      description: Time ambient light will turn off.
+      selector:
+        time:
+          
+    trigger_tx_light:
+      name: TxSwitch
+      description: The light switch/s linked to the ambient light.
+      selector:
+        entity:            
+          filter:
+              domain: switch
+
+    target_tx_ambient_light:
+      name: TxAmbientLight
+      selector:
+        #target:
+        entity:
+          filter:
+              domain: light
+            
+#AUTOMATION
+alias: Light blueprint
+description: ""
+#Trigger
+triggers:
+  - trigger: time
+    at: !input trigger_start_time
+    enabled: true
+    id: start_time_trigger
+  - trigger: time
+    at: !input trigger_end_time
+    enabled: true
+    id: end_time_trigger
+  - trigger: state
+    entity_id:
+      - switch.t5_4c_bedroom_all
+    id: switch_changed_trigger
+conditions:
+  - condition: or
+    conditions:
+      - condition: time
+        after: !input trigger_start_time
+        before: !input trigger_end_time
+      - condition: trigger
+        id:
+          - start_time_trigger
+          - end_time_trigger
+#Actions
+actions:
+  - choose:
+      - conditions:
+          - condition: trigger
+            id:
+              - start_time_trigger
+          - condition: state
+            entity_id: switch.t5_4c_bedroom_all
+            state: "off"
+        sequence:
+          - action: light.turn_on
+            metadata: {}
+            data: {}
+            target:
+              entity_id: light.sonoff_10021c67f7
+        alias: Start Ambient Light
+      - conditions:
+          - condition: trigger
+            id:
+              - end_time_trigger
+        sequence:
+          - action: light.turn_off
+            metadata: {}
+            data: {}
+            target:
+              entity_id: light.sonoff_10021c67f7
+        alias: End Ambient Light
+      - conditions:
+          - condition: trigger
+            id:
+              - switch_changed_trigger
+        sequence:
+          - choose:
+              - conditions:
+                  - condition: state
+                    entity_id: switch.t5_4c_bedroom_all
+                    state: "off"
+                sequence:
+                  - action: light.turn_on
+                    metadata: {}
+                    data: {}
+                    target:
+                      entity_id: light.sonoff_10021c67f7
+              - conditions:
+                  - condition: state
+                    entity_id: switch.t5_4c_bedroom_all
+                    state: "on"
+                sequence:
+                  - action: light.turn_off
+                    metadata: {}
+                    data: {}
+                    target:
+                      entity_id: light.sonoff_10021c67f7
+        alias: Start/End Ambient Light
+mode: single
