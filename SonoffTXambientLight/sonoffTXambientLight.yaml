@@ -60,7 +60,7 @@ triggers:
     id: end_time_trigger
   - trigger: state
     entity_id:
-      - switch.t5_4c_bedroom_all
+      - !input trigger_tx_light
     id: switch_changed_trigger
 conditions:
   - condition: or
@@ -80,14 +80,14 @@ actions:
             id:
               - start_time_trigger
           - condition: state
-            entity_id: switch.t5_4c_bedroom_all
+            entity_id: !input trigger_tx_light
             state: "off"
         sequence:
           - action: light.turn_on
             metadata: {}
             data: {}
             target:
-              entity_id: light.sonoff_10021c67f7
+              entity_id: !input target_tx_ambient_light
         alias: Start Ambient Light
       - conditions:
           - condition: trigger
@@ -98,7 +98,7 @@ actions:
             metadata: {}
             data: {}
             target:
-              entity_id: light.sonoff_10021c67f7
+              entity_id: !input target_tx_ambient_light
         alias: End Ambient Light
       - conditions:
           - condition: trigger
@@ -108,22 +108,22 @@ actions:
           - choose:
               - conditions:
                   - condition: state
-                    entity_id: switch.t5_4c_bedroom_all
+                    entity_id: !input trigger_tx_light
                     state: "off"
                 sequence:
                   - action: light.turn_on
                     metadata: {}
                     data: {}
                     target:
-                      entity_id: light.sonoff_10021c67f7
+                      entity_id: !input target_tx_ambient_light
               - conditions:
                   - condition: state
-                    entity_id: switch.t5_4c_bedroom_all
+                    entity_id: !input trigger_tx_light
                     state: "on"
                 sequence:
                   - action: light.turn_off
                     metadata: {}
                     data: {}
                     target:
-                      entity_id: light.sonoff_10021c67f7
+                      entity_id: !input target_tx_ambient_light
         alias: Start/End Ambient Light
