@@ -1,1 +1,1 @@
-
+This blueprint automates your Sonoff TX switch to control ambient lighting effortlessly. It turns on the ambient light if all channels are off and turns it off as soon as any channel is on. Additionally, it can automatically switch the ambient light on and off at specified times. Perfect for creating the ideal lighting atmosphere in your home!
