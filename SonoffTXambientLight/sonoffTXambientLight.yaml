@@ -3,7 +3,7 @@ blueprint:
   description: Turn ambient light on only if all channels are off
   domain: automation
   author: Shaylen-TRD
-  #source_url: "ttte"
+  source_url: https://github.com/Shaylen-Trd/ha-blueprints/blob/main/SonoffTXambientLight/sonoffTXambientLight.yaml
   #Define inputs
   input:
     trigger_start_time:
