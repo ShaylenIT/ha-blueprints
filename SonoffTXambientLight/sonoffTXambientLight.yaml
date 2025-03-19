@@ -1,6 +1,12 @@
 blueprint:
   name: Sonoff TX Ultimate Ambient Light
-  description: Turn ambient light on only if all channels are off
+  description: |
+    Turns ambient light on if all channels are off & turns ambient light off as soon as one channel is on.
+    Ambient light will automatically switch on at specified start time if all channels are off & will automatically switch off at specified end time.
+    __Note:__ For multi-channel switches, a helper group will need to be created for the "TXSwitch" input.
+
+    <a href="https://www.example.com">View more info on Blueprint Exchange</a>
+
   domain: automation
   author: Shaylen-TRD
   source_url: https://github.com/Shaylen-Trd/ha-blueprints/blob/main/SonoffTXambientLight/sonoffTXambientLight.yaml
@@ -8,7 +14,7 @@ blueprint:
   input:
     trigger_start_time:
       name: Start Time
-      description: Time ambient light will turn on from.
+      description: Time ambient light will turn on.
       selector:
         time:
 
@@ -17,23 +23,26 @@ blueprint:
       description: Time ambient light will turn off.
       selector:
         time:
-          
+
     trigger_tx_light:
       name: TxSwitch
-      description: The light switch/s linked to the ambient light.
+      description: |
+        The switch linked to the ambient light.
+        __Note:__ Use a helper group for multi-channel switches
       selector:
-        entity:            
+        entity:
           filter:
-              domain: switch
+            domain: switch
 
     target_tx_ambient_light:
       name: TxAmbientLight
+      description: The ambient light which will turn on/off.
       selector:
         #target:
         entity:
           filter:
-              domain: light
-            
+            domain: light
+
 #AUTOMATION
 alias: Light blueprint
 description: ""
