@@ -43,6 +43,8 @@ blueprint:
           filter:
             domain: light
 
+mode: restart
+
 #AUTOMATION
 alias: Light blueprint
 description: ""
@@ -125,4 +127,3 @@ actions:
                     target:
                       entity_id: light.sonoff_10021c67f7
         alias: Start/End Ambient Light
-mode: single
