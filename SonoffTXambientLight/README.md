@@ -38,8 +38,3 @@ Version: 1.0
   
 If you like this blueprint or just want to show your support:  
 <a href="https://buymeacoffee.com/shaylen" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" height="30" /></a>
-
-
-Screenshots:  
-Without group
-With group
