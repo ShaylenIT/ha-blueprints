@@ -32,7 +32,9 @@ blueprint:
       selector:
         entity:
           filter:
-            domain: switch
+            domain:
+              - switch
+              - light
 
     target_tx_ambient_light:
       name: TxAmbientLight
