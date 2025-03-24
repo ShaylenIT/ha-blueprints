@@ -1,6 +1,5 @@
 [//]: # (For GitHub only)
 <a href="https://www.buymeacoffee.com/gbraad" target="_blank"><img src="https://img.shields.io/badge/Import%20via%20HA%20Blueprint%20Exchange-18BCF2?logo=homeassistant&logoColor=white" height="30" /></a>  
-
 # Sonoff TX Ultimate Ambient Light
 Turns ambient light on if all channels are off & turns ambient light off as soon as one channel is on.  
 Ambient light will automatically switch on at specified start time if all channels are off & will automatically switch off at specified end time.  
