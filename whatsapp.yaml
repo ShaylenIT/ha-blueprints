@@ -1,15 +1,12 @@
 sequence:
   - variables:
-      varTo: "{{ to | default(['123@s.whatsapp.net', '456@s.whatsapp.net']) }}"
-      varText: "{{ text }}"
-      varImage: "{{ image }}"
       response: "{{ to }}"
   - repeat:
       sequence:
         - choose:
             - conditions:
                 - condition: template
-                  value_template: "{{varImage == ''}}"
+                  value_template: "{{varImage == null}}"
               sequence:
                 - action: whatsapp.send_message
                   data:
@@ -34,5 +31,26 @@ sequence:
       for_each: "{{varTo}}"
 alias: Whatsapp Service
 description: ""
+fields:
+  varTo:
+    selector:
+      text:
+        multiple: true
+    name: To
+    default:
+      - 27836051032@s.whatsapp.net
+      - 27726462478@s.whatsapp.net
+      - 120363402160736200@g.us
+    required: true
+  varText:
+    selector:
+      text:
+        multiline: true
+    name: Text
+    required: true
+  varImage:
+    selector:
+      text: null
+    name: Image
 mode: parallel
 max: 10
